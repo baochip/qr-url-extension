@@ -19,20 +19,22 @@ document.addEventListener('DOMContentLoaded', function () {
       let currentTimeOffsetSubtracted = currentTime.getTime() - currentTime.getTimezoneOffset() * 60 * 1000;
       let localCurrentTime = new Date(currentTimeOffsetSubtracted);
       let currentTimeString = localCurrentTime.toISOString().slice(0, -5) + timezoneMarker;
-      
-      let qrContent = "{ domain: " + domain + " time: " + currentTimeString + " }";
+
+      let qrContent = "pwauth://pass/" + domain + "?time=" + currentTimeString;
       // console.log(qrContent);
       new QRious({
         element: document.getElementById('qr'),
         value: qrContent,
-        size: 180
+        size: 128,
+        level: 'M'
       });
     }, 200)
 
     new QRious({
       element: document.getElementById('qr'),
       value: domain,
-      size: 180
+      size: 128,
+      level: 'M'
     });
 
     document.getElementById('domain').textContent = domain;
