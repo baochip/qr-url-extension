@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
                            (currentTime.getTimezoneOffset()/60<10 ? "0" : "")+
                            (Math.abs(currentTime.getTimezoneOffset()/60))+":00";
 
-    // Interval set to 200ms to limit the maximum offset between system time and time displayed 
-    setInterval(()=>{
+    function buildQrContent() {
       // .toISOString() returns UTC zero offset time, not local time
       // Solution: subtract local offset from current time, format with .toISOString(), and add timezone marker
       // .slice() removes milliseconds and trailing Z, which indicates UTC zero offset time
@@ -19,23 +18,23 @@ document.addEventListener('DOMContentLoaded', function () {
       let currentTimeOffsetSubtracted = currentTime.getTime() - currentTime.getTimezoneOffset() * 60 * 1000;
       let localCurrentTime = new Date(currentTimeOffsetSubtracted);
       let currentTimeString = localCurrentTime.toISOString().slice(0, -5) + timezoneMarker;
+      return "pwauth://pass/" + domain + "?time=" + currentTimeString;
+    }
 
-      let qrContent = "pwauth://pass/" + domain + "?time=" + currentTimeString;
+    function renderQr() {
       // console.log(qrContent);
       new QRious({
         element: document.getElementById('qr'),
-        value: qrContent,
+        value: buildQrContent(),
         size: 128,
         level: 'M'
       });
-    }, 200)
+    }
 
-    new QRious({
-      element: document.getElementById('qr'),
-      value: domain,
-      size: 128,
-      level: 'M'
-    });
+    // Render once immediately so the first QR includes time.
+    renderQr();
+    // Interval set to 200ms to limit the maximum offset between system time and time displayed 
+    setInterval(renderQr, 200);
 
     document.getElementById('domain').textContent = domain;
   });
