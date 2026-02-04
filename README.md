@@ -1,6 +1,6 @@
-# QR URL Extension
+# Baochip QR Extension
 
-A browser extension that shows the current tab's domain as a QR code. The QR payload currently uses the scheme `pwauth://pass/<domain>?time=<ISO8601-with-offset>` and refreshes once per second to embed the current time.
+Baochip QR is a browser extension that shows the current tab's domain as a QR code. The QR payload currently uses the scheme `pwauth://pass/<domain>?time=<ISO8601-with-offset>` and refreshes once per second to embed the current time.
 
 This is meant to work with baosec as a key for looking up passwords in the password manager via the QR code scanning feature; at the moment this is just a POC that shows it can be done.
 
