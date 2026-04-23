@@ -1,20 +1,31 @@
 {
   "manifest_version": 3,
-  "name": "URL as QR",
-  "version": "1.0",
+  "name": "Baochip QR",
+  "short_name": "Baochip QR",
+  "version": "1.0.0",
   "description": "Shows the current page's domain as a QR code.",
   "permissions": ["tabs", "activeTab"],
-  "host_permissions": ["https://*/*", "http://*/*"],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
+  "icons": {
+    "16": "src/icons/icon-16.png",
+    "32": "src/icons/icon-32.png",
+    "48": "src/icons/icon-48.png",
+    "96": "src/icons/icon-96.png",
+    "128": "src/icons/icon-128.png"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon-16.png",
+      "32": "src/icons/icon-32.png",
+      "48": "src/icons/icon-48.png",
+      "96": "src/icons/icon-96.png",
+      "128": "src/icons/icon-128.png"
+    }
   },
   "background": {
-    // Chrome required section
-    "service_worker": "background.js",
-    // Firefox required section
-    "scripts": ["background.js"]
+    "service_worker": "src/background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }
