@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       new QRious({
         element: document.getElementById('qr'),
         value: buildQrContent(),
-        size: 128,
+        size: 154,
         level: 'M'
       });
     }
