@@ -28,7 +28,10 @@
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "browser_specific_settings": {
     "gecko": {
-      "id": "qr-url-extension@local"
+      "id": "qr-url-extension@baochip.com",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }
